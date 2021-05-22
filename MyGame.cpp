@@ -32,10 +32,9 @@ Player p1,p2;
     cin>>juego;
     while (juego == "C")
     {
-        cin >> juego;
-
-        
-        
-        
+       p1.Play();
+       p2.Play();
+       cin>>juego;
+      
     }
 }
