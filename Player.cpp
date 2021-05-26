@@ -4,13 +4,7 @@ Player::Player(){
     int turno=0, jugador=1, casilla=1;
     string TipodeCasilla = "N";
 }
-//Constructor
-//Player::Player(int Turno, int Jugador, int Casilla, string tipodecasilla){
-  //  this -> turno = turno;
-    //this -> jugador = jugador;
-    //this -> casilla = casilla;
-    //this -> TipodeCasilla = TipodeCasilla;
-//}
+
 //Setters
 void Player::setTurno(int Turno){
     turno=Turno;
@@ -52,11 +46,13 @@ int Player::LanzarDado(){
     
     for(int c = 1; c <= 10; c++)
     {
-        num = 1 + rand() % 6;
+        num = 1 + time(0)% 6;
     }
+
 
 return num;  
 }
+
 
 //Metodo de Jugada
 void Player::Play(){
@@ -64,6 +60,7 @@ void Player::Play(){
     temp2 = getTurno();
     setTurno(getTurno()+1);
     temp = getCasilla();
+    //Dado
     roll = LanzarDado();
     setCasilla(getCasilla()+roll);
     if (getCasilla() == 27 || getCasilla() == 16 || getCasilla() == 8)
@@ -79,5 +76,14 @@ void Player::Play(){
     else{
         setTipodeCasilla("N");
     }
-    cout<<temp2<<getJugador()<<temp<<roll<<getTipodeCasilla()<<getCasilla()<<endl;
+     if (getCasilla()>=30){
+            cout<<"Congratulations Player "<< getJugador() <<"! You won!"<<endl;
+            cout<<"--GAME OVER--"<<endl;
+            cout<<"   Result: "<<endl;
+            setCasilla(30);
+        
+        }
+    cout<< "|" << "R" << "|" << "J" << "|" <<"C" <<"|" <<"D" <<"|" <<"P"<< "|" <<"CA"<< "|" <<endl;
+    cout<<"|"<<temp2<<"|"<<getJugador()<<"|"<<temp<<"|"<<roll<<"|"<<getTipodeCasilla()<<"|"<<getCasilla()<<"|"<<endl;
+    
 }
