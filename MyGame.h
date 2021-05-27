@@ -10,6 +10,7 @@ public:
     MyGame();
     void PrintTablero();
     void Start();
-    
+    void Start2();
+    void Read();
 
 };

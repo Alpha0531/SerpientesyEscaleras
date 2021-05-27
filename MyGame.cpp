@@ -4,7 +4,47 @@ MyGame::MyGame(){
     string juego="C";
 }
 
+//Leer Archivo:
+void MyGame::Read(){
+Player p1,p2;
+    p1.setJugador(1);
+    p1.setCasilla(1);
+    p1.setTipodeCasilla("N");
+    p1.setTurno(1);
 
+    p2.setJugador(2);
+    p2.setCasilla(1);
+    p2.setTipodeCasilla("N");
+    p2.setTurno(1);
+
+    char notebook[99][99]; 
+    ifstream fp("escayserpye.txt");
+for (int i = 0; i < 20; i++) //NO IMPORTA EL LARGO DE LA LECTURA
+    {
+        fp >> notebook[0][i]; // LE ASIGNAS LOS VALORES DE FP A LA MATRIZ
+    }
+
+juego = "k";
+while (juego != "E" ){
+    for (int a = 0; a < 20; a++){
+        juego = notebook[0][a];
+        if (juego == "C")
+        {             
+            p1.Play();
+            
+            p2.Play();
+
+        }
+        else if (juego == "E")
+        {            
+            cout << "--GAME OVER--" << endl;   
+            break; 
+        }
+    }
+}
+
+
+}
 //Print Tablero:
 void MyGame::PrintTablero(){
     cout<<"---------Tablero---------"<<endl;
@@ -99,5 +139,10 @@ Player p1,p2;
         
         
     }
+
+}
+
+void MyGame::Start2(){
+    
 
 }

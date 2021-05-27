@@ -10,7 +10,7 @@ int main(){
 
 MyGame x;
 
-x.Start();
+x.Read();
 
 return 0;
 }

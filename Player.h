@@ -1,6 +1,8 @@
 #include <iostream>
 #include<stdlib.h>
 #include<time.h>
+#include <fstream>
+#include <stdbool.h>
 using namespace std;
 
 class Player{
