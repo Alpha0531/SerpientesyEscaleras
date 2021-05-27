@@ -24,23 +24,38 @@ for (int i = 0; i < 20; i++) //NO IMPORTA EL LARGO DE LA LECTURA
         fp >> notebook[0][i]; // LE ASIGNAS LOS VALORES DE FP A LA MATRIZ
     }
 
-juego = "k";
+
 while (juego != "E" ){
+    srand(time(NULL));
     for (int a = 0; a < 20; a++){
         juego = notebook[0][a];
         if (juego == "C")
         {             
             p1.Play();
+            if (p1.getCasilla() >= 30)
+            {
+            juego = "E";
+            break;
+            }
             
             p2.Play();
+            if (p2.getCasilla() >= 30)
+            {
+            juego = "E";
+            break;
+            }
 
+            
+            
         }
+        
         else if (juego == "E")
         {            
             cout << "--GAME OVER--" << endl;   
             break; 
         }
     }
+    
 }
 
 
@@ -143,6 +158,18 @@ Player p1,p2;
 }
 
 void MyGame::Start2(){
-    
-
+    ofstream file; 
+    file.open("escayserpye.txt", ios::out); 
+    if(file.fail()){
+        cout << "No se pudo leer" << endl; 
+        exit(1);
+    } 
+char texto = 'C';
+    while(texto == 'C'){
+        cin>>texto;
+        file<<texto<<endl;
+    }
+     
+    file.close(); 
+Read();
 }

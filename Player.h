@@ -3,6 +3,9 @@
 #include<time.h>
 #include <fstream>
 #include <stdbool.h>
+#include <ctime>
+
+
 using namespace std;
 
 class Player{

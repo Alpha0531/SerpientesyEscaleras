@@ -6,15 +6,15 @@ using namespace std;
 void escribir(); 
 void lectura(); 
 int main(){
-    //escribir();
-    lectura(); 
+    escribir();
+    //lectura(); 
 
     return 0; 
 }
 
 void escribir(){
     ofstream archivo; // LE ASIGNAS LA VALIRABLE ARCHIVO A OFSTREAM. PUEDES UTILIZAR OTRO NOMBRE QUE NO SEA ARCHIVO
-    archivo.open("escayserpye.txt", ios::out); // Opening the faile and the ios out is making a new file: TAMBIEN SI CAMBIAS EL NOMBRE TE CREA UN NUEVO TXT
+    archivo.open("Nuevo.txt", ios::out); // Opening the faile and the ios out is making a new file: TAMBIEN SI CAMBIAS EL NOMBRE TE CREA UN NUEVO TXT
     if(archivo.fail()){
         cout << "No se pudo leer" << endl; 
         exit(1);

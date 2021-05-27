@@ -2,6 +2,7 @@
 #include "MyGame.h"
 
 
+
 using namespace std;
 
 
@@ -10,7 +11,7 @@ int main(){
 
 MyGame x;
 
-x.Read();
+x.Start2();
 
 return 0;
 }

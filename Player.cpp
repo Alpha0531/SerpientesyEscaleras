@@ -41,13 +41,10 @@ string Player::getTipodeCasilla(){
 
 //Método Lanzar Dado
 int Player::LanzarDado(){
-  int num;
-    srand((unsigned)time(0));
-    
-    for(int c = 1; c <= 10; c++)
-    {
-        num = 1 + time(0)% 6;
-    }
+int num;
+int caras = 6;
+
+num = (rand()%caras+1);
 
 
 return num;  
