@@ -1,11 +1,7 @@
+F
 C
 C
-C
-C
-C
-C
-C
-C
-C
+R
+T
 C
 E

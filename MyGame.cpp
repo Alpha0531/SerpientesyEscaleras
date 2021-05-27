@@ -32,6 +32,7 @@ while (juego != "E" ){
         if (juego == "C")
         {             
             p1.Play();
+            cout<<"--------------"<<endl;
             if (p1.getCasilla() >= 30)
             {
             juego = "E";
@@ -44,6 +45,7 @@ while (juego != "E" ){
             juego = "E";
             break;
             }
+            cout<<"--------------"<<endl;
 
             
             
@@ -54,12 +56,17 @@ while (juego != "E" ){
             cout << "--GAME OVER--" << endl;   
             break; 
         }
+        else{
+            cout<<"Invalid character "<<endl;
+            cout<<"--------------"<<endl;
+        }
     }
     
 }
 
 
 }
+
 //Print Tablero:
 void MyGame::PrintTablero(){
     cout<<"---------Tablero---------"<<endl;
@@ -105,7 +112,7 @@ Player p1,p2;
     }
     while (juego == "C")
     {
-        
+        srand(time(NULL));
         p1.Play();
         //Limite Casilla
         if (p1.getCasilla() >= 30){
@@ -165,11 +172,14 @@ void MyGame::Start2(){
         exit(1);
     } 
 char texto = 'C';
-    while(texto == 'C'){
+    cout<<"Press C to add a turn and press E to finish the game \n";
+    while(texto != 'E'){
         cin>>texto;
         file<<texto<<endl;
     }
      
     file.close(); 
+
+PrintTablero();
 Read();
 }
