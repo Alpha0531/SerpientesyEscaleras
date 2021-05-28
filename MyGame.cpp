@@ -2,10 +2,11 @@
 
 MyGame::MyGame(){
     string juego="C";
+    string doc = "Serp&Laders.txt";
 }
 
 //Leer Archivo:
-void MyGame::Read(){
+void MyGame::Read(string doc){
 Player p1,p2;
     p1.setJugador(1);
     p1.setCasilla(1);
@@ -18,10 +19,10 @@ Player p1,p2;
     p2.setTurno(1);
 
     char notebook[99][99]; 
-    ifstream fp("escayserpye.txt");
-for (int i = 0; i < 20; i++) //NO IMPORTA EL LARGO DE LA LECTURA
+    ifstream fp("Serp&Laders.txt");
+for (int i = 0; i < 20; i++) 
     {
-        fp >> notebook[0][i]; // LE ASIGNAS LOS VALORES DE FP A LA MATRIZ
+        fp >> notebook[0][i]; 
     }
 
 
@@ -82,8 +83,7 @@ void MyGame::PrintTablero(){
 //Método para iniciar el juego
 void MyGame::Start()
 {
-    //Player P1 = Player(1,1,1,"N");
-    //Player P2 = Player(1,2,1,"N");
+   
 Player p1,p2;
     p1.setJugador(1);
     p1.setCasilla(1);
@@ -166,7 +166,7 @@ Player p1,p2;
 
 void MyGame::Start2(){
     ofstream file; 
-    file.open("escayserpye.txt", ios::out); 
+    file.open("Serp&Laders.txt", ios::out); 
     if(file.fail()){
         cout << "No se pudo leer" << endl; 
         exit(1);
@@ -181,5 +181,13 @@ char texto = 'C';
     file.close(); 
 
 PrintTablero();
-Read();
+string doc = "Serp&Laders.txt";
+Read(doc);
+}
+
+void MyGame::Start3(){
+    cout<<"Introduce the name of the file .txt "<<endl;
+    string doc;
+    cin>>doc;
+    Read(doc);
 }

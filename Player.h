@@ -9,7 +9,7 @@
 using namespace std;
 
 class Player{
-public:
+private: 
 int turno, jugador, casilla;
 string TipodeCasilla;
 
