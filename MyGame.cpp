@@ -60,6 +60,8 @@ while (juego != "E" ){
         else{
             cout<<"Invalid character "<<endl;
             cout<<"--------------"<<endl;
+            juego = "E";
+            break;
         }
     }
     
