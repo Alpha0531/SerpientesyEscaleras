@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Dice.h"
 #include<stdlib.h>
 #include<time.h>
 #include <fstream>
@@ -8,7 +9,7 @@
 
 using namespace std;
 
-class Player{
+class Player:public Dice{
 private: 
 int turno, jugador, casilla, ncasillas;
 string TipodeCasilla;
@@ -22,7 +23,7 @@ public:
     void setTipodeCasilla(string);
     void setNcasillas(int);
     void Play();
-    int LanzarDado();
+    int lanzarDado();
     int getTurno();
     int getCasilla();
     int getJugador();

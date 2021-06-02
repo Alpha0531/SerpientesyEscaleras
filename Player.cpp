@@ -50,7 +50,7 @@ string Player::getTipodeCasilla(){
 }
 
 //Método Lanzar Dado
-int Player::LanzarDado(){
+int Player::lanzarDado(){
 int num;
 int caras = 6;
 
@@ -68,7 +68,7 @@ void Player::Play(){
     setTurno(getTurno()+1);
     temp = getCasilla();
     //Dado
-    roll = LanzarDado();
+    roll = lanzarDado();
     setCasilla(getCasilla()+roll);
     if (getCasilla() == 27 || getCasilla() == 16 || getCasilla() == 8)
     {

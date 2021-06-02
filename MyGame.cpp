@@ -114,15 +114,20 @@ for (int i = 0; i < numJugadores; i++){
     if (juego == "C"){
         PrintTablero();
     }
-    int contador = 0;
+    
     while (juego == "C")
     {
         
         
+        for(int j=0; j<numJugadores; j++){
         srand(time(NULL));
-        jugadores[contador]->Play();
+        jugadores[j]->Play();
+        
+
+        
         //Limite Casilla
-        if (jugadores[contador]->getCasilla() >= jugadores[contador]->getNcasillas()){
+        if (jugadores[j]->getCasilla() >= jugadores[j]->getNcasillas()){
+            juego="Adios";
             break;
         }
         cin>>juego;
@@ -135,15 +140,11 @@ for (int i = 0; i < numJugadores; i++){
         }
         if (juego== "E"){
             cout<<"--GAME OVER--"<<endl;
+            juego="Adios";
             break;
         }
-        
-        
-       
-        contador = contador+1;
-       if (contador == numJugadores){
-           contador=0;
-       } 
+            }
+          
     }
 
 }
