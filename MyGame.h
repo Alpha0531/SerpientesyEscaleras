@@ -2,10 +2,14 @@
 #include"Player.h"
 using namespace std;
 
+//#define PLAYERS 2
+
 class MyGame 
 {
     string juego;
     string doc;
+    Player *jugadores[10];
+    //Player* jugadores[PLAYERS];
 
 public:
     MyGame();

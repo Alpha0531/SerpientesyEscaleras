@@ -7,16 +7,18 @@ MyGame::MyGame(){
 
 //Leer Archivo:
 void MyGame::Read(string doc){
-Player p1,p2;
-    p1.setJugador(1);
-    p1.setCasilla(1);
-    p1.setTipodeCasilla("N");
-    p1.setTurno(1);
+int numJugadores;
+cout<<"Ingrese Numero de Jugadores: "<<endl;
+cin>>numJugadores;
 
-    p2.setJugador(2);
-    p2.setCasilla(1);
-    p2.setTipodeCasilla("N");
-    p2.setTurno(1);
+for (int i = 0; i < numJugadores; i++){
+    jugadores[i] = new Player();
+    jugadores[i]->setCasilla(1);
+    jugadores[i]->setTurno(1);
+    jugadores[i]->setJugador(i+1);
+    jugadores[i]->setNcasillas(15); 
+    
+}
 
     char notebook[99][99]; 
     ifstream fp("Serp&Laders.txt");
@@ -25,30 +27,22 @@ for (int i = 0; i < 20; i++)
         fp >> notebook[0][i]; 
     }
 
-
+int contador = 0;
 while (juego != "E" ){
     srand(time(NULL));
     for (int a = 0; a < 20; a++){
         juego = notebook[0][a];
         if (juego == "C")
         {             
-            p1.Play();
+            jugadores[contador]->Play();
             cout<<"--------------"<<endl;
-            if (p1.getCasilla() >= 30)
+            if (jugadores[contador]->getCasilla() >= jugadores[contador]->getNcasillas())
             {
             juego = "E";
             break;
-            }
             
-            p2.Play();
-            if (p2.getCasilla() >= 30)
-            {
-            juego = "E";
-            break;
             }
-            cout<<"--------------"<<endl;
-
-            
+             
             
         }
         
@@ -63,8 +57,12 @@ while (juego != "E" ){
             juego = "E";
             break;
         }
+        contador = contador+1;
+       if (contador == numJugadores){
+           contador=0;
     }
     
+       }
 }
 
 
@@ -85,20 +83,24 @@ void MyGame::PrintTablero(){
 //Método para iniciar el juego
 void MyGame::Start()
 {
-   
-Player p1,p2;
-    p1.setJugador(1);
-    p1.setCasilla(1);
-    p1.setTipodeCasilla("N");
-    p1.setTurno(1);
+int numJugadores;
+cout<<"Ingrese Numero de Jugadores: "<<endl;
+cin>>numJugadores;
 
-    p2.setJugador(2);
-    p2.setCasilla(1);
-    p2.setTipodeCasilla("N");
-    p2.setTurno(1);
+for (int i = 0; i < numJugadores; i++){
+    jugadores[i] = new Player();
+    jugadores[i]->setCasilla(1);
+    jugadores[i]->setTurno(1);
+    jugadores[i]->setJugador(i+1);
+    jugadores[i]->setNcasillas(15); 
+    
+}
+
+
     cout<<"Press C to continue next turn, or E to end the game:"<<endl;
     cin>>juego;
-    while (juego !="C"&& juego !="E"){
+    while (juego !="C"&& juego !="E")
+    {
             cout<<"Invalid option, please press C to continue next turn or E to end the game"<<endl;
 
             cin>>juego;
@@ -112,12 +114,15 @@ Player p1,p2;
     if (juego == "C"){
         PrintTablero();
     }
+    int contador = 0;
     while (juego == "C")
     {
+        
+        
         srand(time(NULL));
-        p1.Play();
+        jugadores[contador]->Play();
         //Limite Casilla
-        if (p1.getCasilla() >= 30){
+        if (jugadores[contador]->getCasilla() >= jugadores[contador]->getNcasillas()){
             break;
         }
         cin>>juego;
@@ -133,35 +138,12 @@ Player p1,p2;
             break;
         }
         
-
-        p2.Play();
-        //Limite Casilla
-        if (p2.getCasilla() >= 30){
-            break;
-        }
-        cin>>juego;
-        while (juego !="C"&& juego !="E"){
-            cout<<"Invalid option, please press C to continue next turn or E to end the game"<<endl;
-
-            cin>>juego;
-            
-
-        }
-        if (juego== "E"){
-            cout<<"--GAME OVER--"<<endl;
-            break;
-        }
         
-      
-        //Limite de Turnos
-        if (p2.getTurno() > 20){
-            cout<<"The number of turns have been exceeded"<<endl;
-            break;
-        }
-
        
-        
-        
+        contador = contador+1;
+       if (contador == numJugadores){
+           contador=0;
+       } 
     }
 
 }

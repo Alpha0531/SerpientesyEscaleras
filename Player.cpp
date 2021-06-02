@@ -1,30 +1,40 @@
 #include "Player.h"
 
 Player::Player(){
-    int turno=0, jugador=1, casilla=1;
+    int turno=0, jugador=1, casilla=1, ncasillas=30;
     string TipodeCasilla = "N";
 }
 
+
+
+
 //Setters
 void Player::setTurno(int Turno){
-    turno=Turno;
+   this -> turno=Turno;
 }
 
 void Player::setJugador(int Jugador){
-    jugador = Jugador;
+    this -> jugador = Jugador;
 }
 
 void Player::setCasilla(int Casilla){
-    casilla = Casilla;
+    this -> casilla = Casilla;
 }
 
 void Player::setTipodeCasilla(string tipodecasilla){
-    TipodeCasilla = tipodecasilla;
+    this -> TipodeCasilla = tipodecasilla;
 }
 
+void Player::setNcasillas(int ncasillas){
+     this -> ncasillas = ncasillas;
+}
 //Getters
 int Player::getTurno(){
     return turno;
+}
+
+int Player::getNcasillas(){
+    return ncasillas;
 }
 
 int Player::getCasilla(){
@@ -73,11 +83,11 @@ void Player::Play(){
     else{
         setTipodeCasilla("N");
     }
-     if (getCasilla()>=30){
+     if (getCasilla()>=getNcasillas()){
             cout<<"Congratulations Player "<< getJugador() <<"! You won!"<<endl;
             cout<<"--GAME OVER--"<<endl;
             cout<<"   Result: "<<endl;
-            setCasilla(30);
+            setCasilla(getNcasillas());
         
         }
     cout<< "|" << "R" << "|" << "J" << "|" <<"C" <<"|" <<"D" <<"|" <<"P"<< "|" <<"CA"<< "|" <<endl;

@@ -10,21 +10,23 @@ using namespace std;
 
 class Player{
 private: 
-int turno, jugador, casilla;
+int turno, jugador, casilla, ncasillas;
 string TipodeCasilla;
 
 public:
     Player();
-    //Player(int,int,int,string);
+    
     void setTurno(int);
     void setJugador(int);
     void setCasilla(int);
     void setTipodeCasilla(string);
+    void setNcasillas(int);
     void Play();
     int LanzarDado();
     int getTurno();
     int getCasilla();
     int getJugador();
+    int getNcasillas();
     string getTipodeCasilla();
 
 };
