@@ -7,16 +7,52 @@ MyGame::MyGame(){
 
 //Leer Archivo:
 void MyGame::Read(string doc){
-int numJugadores;
+int numJugadores, numCasillas, nSnak, nEsc, Rew, Pen;
+cout<<"Ingrese Numero de Casillas: "<<endl;
+cin>>numCasillas;
 cout<<"Ingrese Numero de Jugadores: "<<endl;
 cin>>numJugadores;
+cout<<"Ingrese Numero de Serpientes en el tablero: "<<endl;
+cin>>nSnak;
+cout<<"Ingrese Numero de Escaleras en el tablero"<<endl;
+cin>>nEsc;
+cout<<"Ingrese numero de avance de escalera: "<<endl;
+cin>>Rew;
+cout<<"Ingrese numero de retroceso de serpiente:  "<<endl;
+cin>>Pen;
+int serC[nSnak], EscC[nEsc];
+srand(time(NULL));
+    SnakeyLader SyL=SnakeyLader(nSnak, nEsc, Rew, Pen);
+    for(int i=0; i<SyL.getNSnak(); i++){
+        serC[i]=SyL.lanzarDado(numCasillas);
+    }
+    for(int i=0; i<SyL.getNEsc(); i++){
+        EscC[i]=SyL.lanzarDado(numCasillas);
+    }
+    for(int i=0; i<SyL.getNSnak();i++){
+        if(serC[i]==serC[i-1]){
+                serC[i]=SyL.lanzarDado(numCasillas);
+            }
+        for(int a=0; a<SyL.getNEsc(); a++){
+            if(EscC[a]==EscC[a-1]){
+                EscC[i]=SyL.lanzarDado(numCasillas);
+            }
+            if(serC[i]==EscC[a]){
+                serC[i]=SyL.lanzarDado(numCasillas);
+            }
+            if(serC[i]==EscC[a]){
+                serC[i]=SyL.lanzarDado(numCasillas);
+            }
+
+        }
+    }
 
 for (int i = 0; i < numJugadores; i++){
     jugadores[i] = new Player();
     jugadores[i]->setCasilla(1);
     jugadores[i]->setTurno(1);
     jugadores[i]->setJugador(i+1);
-    jugadores[i]->setNcasillas(15); 
+    jugadores[i]->setNcasillas(numCasillas); 
     
 }
 
@@ -34,7 +70,7 @@ while (juego != "E" ){
         juego = notebook[0][a];
         if (juego == "C")
         {             
-            jugadores[contador]->Play();
+            jugadores[contador]->Play(serC,EscC,nSnak, nEsc, Rew, Pen);
             cout<<"--------------"<<endl;
             if (jugadores[contador]->getCasilla() >= jugadores[contador]->getNcasillas())
             {
@@ -83,16 +119,54 @@ void MyGame::PrintTablero(){
 //Método para iniciar el juego
 void MyGame::Start()
 {
-int numJugadores;
+int numJugadores, numCasillas, nSnak, nEsc, Rew, Pen;
+cout<<"Ingrese Numero de Casillas: "<<endl;
+cin>>numCasillas;
 cout<<"Ingrese Numero de Jugadores: "<<endl;
 cin>>numJugadores;
+cout<<"Ingrese Numero de Serpientes en el tablero: "<<endl;
+cin>>nSnak;
+cout<<"Ingrese Numero de Escaleras en el tablero"<<endl;
+cin>>nEsc;
+cout<<"Ingrese numero de avance de escalera: "<<endl;
+cin>>Rew;
+cout<<"Ingrese numero de retroceso de serpiente:  "<<endl;
+cin>>Pen;
+int serC[nSnak], EscC[nEsc];
+srand(time(NULL));
+    SnakeyLader SyL=SnakeyLader(nSnak, nEsc, Rew, Pen);
+    for(int i=0; i<SyL.getNSnak(); i++){
+        serC[i]=SyL.lanzarDado(numCasillas);
+    }
+    for(int i=0; i<SyL.getNEsc(); i++){
+        EscC[i]=SyL.lanzarDado(numCasillas);
+    }
+    for(int i=0; i<SyL.getNSnak();i++){
+        if(serC[i]==serC[i-1]){
+                serC[i]=SyL.lanzarDado(numCasillas);
+            }
+        for(int a=0; a<SyL.getNEsc(); a++){
+            if(EscC[a]==EscC[a-1]){
+                EscC[i]=SyL.lanzarDado(numCasillas);
+            }
+            if(serC[i]==EscC[a]){
+                serC[i]=SyL.lanzarDado(numCasillas);
+            }
+            if(serC[i]==EscC[a]){
+                serC[i]=SyL.lanzarDado(numCasillas);
+            }
+
+        }
+    }
+    
+   
 
 for (int i = 0; i < numJugadores; i++){
     jugadores[i] = new Player();
     jugadores[i]->setCasilla(1);
     jugadores[i]->setTurno(1);
     jugadores[i]->setJugador(i+1);
-    jugadores[i]->setNcasillas(15); 
+    jugadores[i]->setNcasillas(numCasillas); 
     
 }
 
@@ -121,7 +195,7 @@ for (int i = 0; i < numJugadores; i++){
         
         for(int j=0; j<numJugadores; j++){
         srand(time(NULL));
-        jugadores[j]->Play();
+        jugadores[j]->Play(serC,EscC,nSnak, nEsc, Rew, Pen);
         
 
         

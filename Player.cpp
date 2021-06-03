@@ -62,26 +62,40 @@ return num;
 
 
 //Metodo de Jugada
-void Player::Play(){
+void Player::Play(int serC[],int EscC[],int nSnak, int nEsc, int Rew, int Pen){
     int temp, temp2, roll;
+    
+    
     temp2 = getTurno();
     setTurno(getTurno()+1);
     temp = getCasilla();
     //Dado
     roll = lanzarDado();
     setCasilla(getCasilla()+roll);
-    if (getCasilla() == 27 || getCasilla() == 16 || getCasilla() == 8)
-    {
-        setCasilla(getCasilla()-3);
-        setTipodeCasilla("S");
-    }
-    else if (getCasilla() == 22 || getCasilla() == 12 || getCasilla() == 3)
-    {
-        setCasilla(getCasilla()+3);
-        setTipodeCasilla("L");
-    }
-    else{
+    for(int i=0; i<nSnak;i++){
+        if (serC[i]==getCasilla()){
+            setCasilla(getCasilla()- Pen);
+            setTipodeCasilla("S");
+            break;
+
+        }
+         else{
+
         setTipodeCasilla("N");
+    }
+    }
+    if(getTipodeCasilla()=="N"){
+    for(int i=0; i<nEsc;i++){
+        if (EscC[i]==getCasilla()){
+            setCasilla(getCasilla()+ Rew);
+            setTipodeCasilla("L");
+            break;
+
+        }
+         else{
+        setTipodeCasilla("N");
+    }
+    }
     }
      if (getCasilla()>=getNcasillas()){
             cout<<"Congratulations Player "<< getJugador() <<"! You won!"<<endl;
@@ -92,5 +106,13 @@ void Player::Play(){
         }
     cout<< "|" << "R" << "|" << "J" << "|" <<"C" <<"|" <<"D" <<"|" <<"P"<< "|" <<"CA"<< "|" <<endl;
     cout<<"|"<<temp2<<"|"<<getJugador()<<"|"<<temp<<"|"<<roll<<"|"<<getTipodeCasilla()<<"|"<<getCasilla()<<"|"<<endl;
+    for(int i=0; i<nSnak;i++){
+        cout << serC[i] << " ";
+    }
+    cout << " " << endl;
+    for(int i=0; i<nEsc;i++){
+        cout << EscC[i] << " ";
+    }
+    
     
 }

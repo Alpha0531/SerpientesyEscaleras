@@ -5,6 +5,7 @@
 #include <fstream>
 #include <stdbool.h>
 #include <ctime>
+#include"SnakeyLader.h"
 
 
 using namespace std;
@@ -12,6 +13,7 @@ using namespace std;
 class Player:public Dice{
 private: 
 int turno, jugador, casilla, ncasillas;
+SnakeyLader SyL;
 string TipodeCasilla;
 
 public:
@@ -22,7 +24,7 @@ public:
     void setCasilla(int);
     void setTipodeCasilla(string);
     void setNcasillas(int);
-    void Play();
+    void Play(int[], int[],int, int, int, int);
     int lanzarDado();
     int getTurno();
     int getCasilla();
