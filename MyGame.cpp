@@ -7,9 +7,11 @@ MyGame::MyGame(){
 
 //Leer Archivo:
 void MyGame::Read(string doc){
-int numJugadores, numCasillas, nSnak, nEsc, Rew, Pen;
+int numJugadores, numCasillas, nSnak, nEsc, Rew, Pen, nturnos;
 cout<<"Ingrese Numero de Casillas: "<<endl;
 cin>>numCasillas;
+cout<<"Ingrese numero de turnos:  "<<endl;
+cin>>nturnos;
 cout<<"Ingrese Numero de Jugadores: "<<endl;
 cin>>numJugadores;
 cout<<"Ingrese Numero de Serpientes en el tablero: "<<endl;
@@ -20,6 +22,7 @@ cout<<"Ingrese numero de avance de escalera: "<<endl;
 cin>>Rew;
 cout<<"Ingrese numero de retroceso de serpiente:  "<<endl;
 cin>>Pen;
+
 int serC[nSnak], EscC[nEsc];
 srand(time(NULL));
     SnakeyLader SyL=SnakeyLader(nSnak, nEsc, Rew, Pen);
@@ -52,7 +55,8 @@ for (int i = 0; i < numJugadores; i++){
     jugadores[i]->setCasilla(1);
     jugadores[i]->setTurno(1);
     jugadores[i]->setJugador(i+1);
-    jugadores[i]->setNcasillas(numCasillas); 
+    jugadores[i]->setNcasillas(numCasillas);
+    jugadores[i]->setNturnos(nturnos); 
     
 }
 
@@ -69,7 +73,14 @@ while (juego != "E" ){
     for (int a = 0; a < 20; a++){
         juego = notebook[0][a];
         if (juego == "C")
-        {             
+        {    
+            if (jugadores[contador]->getTurno() > jugadores[contador]->getNturnos())
+            {
+            juego = "E";
+            cout << "--GAME OVER--" << endl;
+            break;
+            
+            }         
             jugadores[contador]->Play(serC,EscC,nSnak, nEsc, Rew, Pen);
             cout<<"--------------"<<endl;
             if (jugadores[contador]->getCasilla() >= jugadores[contador]->getNcasillas())
@@ -78,6 +89,7 @@ while (juego != "E" ){
             break;
             
             }
+            
              
             
         }
@@ -104,24 +116,16 @@ while (juego != "E" ){
 
 }
 
-//Print Tablero:
-void MyGame::PrintTablero(){
-    cout<<"---------Tablero---------"<<endl;
-    cout<<"30 --> N N N S N N \n";
-    cout<<"       N N N L N N \n";
-    cout<<"       N N S N N N \n";
-    cout<<"       N S N N N L \n";
-    cout<<"       N N N L N N <-- 1 \n";
-    cout<<"-------------------------"<<endl;
-}
 
 
 //Método para iniciar el juego
 void MyGame::Start()
 {
-int numJugadores, numCasillas, nSnak, nEsc, Rew, Pen;
+int numJugadores, numCasillas, nSnak, nEsc, Rew, Pen, nturnos;
 cout<<"Ingrese Numero de Casillas: "<<endl;
 cin>>numCasillas;
+cout<<"Ingrese numero de turnos:  "<<endl;
+cin>>nturnos;
 cout<<"Ingrese Numero de Jugadores: "<<endl;
 cin>>numJugadores;
 cout<<"Ingrese Numero de Serpientes en el tablero: "<<endl;
@@ -132,6 +136,7 @@ cout<<"Ingrese numero de avance de escalera: "<<endl;
 cin>>Rew;
 cout<<"Ingrese numero de retroceso de serpiente:  "<<endl;
 cin>>Pen;
+
 int serC[nSnak], EscC[nEsc];
 srand(time(NULL));
     SnakeyLader SyL=SnakeyLader(nSnak, nEsc, Rew, Pen);
@@ -166,7 +171,8 @@ for (int i = 0; i < numJugadores; i++){
     jugadores[i]->setCasilla(1);
     jugadores[i]->setTurno(1);
     jugadores[i]->setJugador(i+1);
-    jugadores[i]->setNcasillas(numCasillas); 
+    jugadores[i]->setNcasillas(numCasillas);
+    jugadores[i]->setNturnos(nturnos); 
     
 }
 
@@ -185,9 +191,7 @@ for (int i = 0; i < numJugadores; i++){
     if (juego== "E"){
         cout<<"--GAME OVER--"<<endl;
     }
-    if (juego == "C"){
-        PrintTablero();
-    }
+    
     
     while (juego == "C")
     {
@@ -195,6 +199,12 @@ for (int i = 0; i < numJugadores; i++){
         
         for(int j=0; j<numJugadores; j++){
         srand(time(NULL));
+        if (jugadores[j]->getTurno() > jugadores[j]->getNturnos()){
+            juego="Adios";
+            cout << "--GAME OVER--" << endl;
+            
+            break;
+        }
         jugadores[j]->Play(serC,EscC,nSnak, nEsc, Rew, Pen);
         
 
@@ -204,6 +214,7 @@ for (int i = 0; i < numJugadores; i++){
             juego="Adios";
             break;
         }
+        
         cin>>juego;
 
         while (juego !="C"&& juego !="E"){
@@ -239,7 +250,7 @@ char texto = 'C';
      
     file.close(); 
 
-PrintTablero();
+
 string doc = "Serp&Laders.txt";
 Read(doc);
 }

@@ -12,13 +12,14 @@ using namespace std;
 
 class Player:public Dice{
 private: 
-int turno, jugador, casilla, ncasillas;
-SnakeyLader SyL;
+int turno, jugador, casilla, ncasillas, nturnos;
+
 string TipodeCasilla;
 
 public:
     Player();
     
+    void setNturnos(int);
     void setTurno(int);
     void setJugador(int);
     void setCasilla(int);
@@ -30,6 +31,7 @@ public:
     int getCasilla();
     int getJugador();
     int getNcasillas();
+    int getNturnos();
     string getTipodeCasilla();
 
 };

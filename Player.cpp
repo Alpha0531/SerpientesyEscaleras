@@ -1,7 +1,7 @@
 #include "Player.h"
 
 Player::Player(){
-    int turno=0, jugador=1, casilla=1, ncasillas=30;
+    int nturnos = 0, turno=0, jugador=1, casilla=1, ncasillas=30;
     string TipodeCasilla = "N";
 }
 
@@ -9,6 +9,9 @@ Player::Player(){
 
 
 //Setters
+void Player::setNturnos(int nturnos){
+    this -> nturnos = nturnos;
+}
 void Player::setTurno(int Turno){
    this -> turno=Turno;
 }
@@ -29,6 +32,9 @@ void Player::setNcasillas(int ncasillas){
      this -> ncasillas = ncasillas;
 }
 //Getters
+int Player::getNturnos(){
+    return nturnos;
+}
 int Player::getTurno(){
     return turno;
 }
@@ -104,15 +110,24 @@ void Player::Play(int serC[],int EscC[],int nSnak, int nEsc, int Rew, int Pen){
             setCasilla(getNcasillas());
         
         }
+        if (getCasilla()<getNcasillas()){
+        cout<<"Casillas de las serpientes"<<endl;
+        for(int i=0; i<nSnak;i++){
+            cout << serC[i] << "|";
+        }
+        cout << "" << endl;
+        cout<<"--------------"<<endl;
+        
+            cout<<"Casillas de las escaleras"<<endl;
+        for(int i=0; i<nEsc;i++){
+            cout << EscC[i] << "|";
+            
+        }
+        cout << "" << endl;
+        cout<<"--------------"<<endl;
+        }
     cout<< "|" << "R" << "|" << "J" << "|" <<"C" <<"|" <<"D" <<"|" <<"P"<< "|" <<"CA"<< "|" <<endl;
     cout<<"|"<<temp2<<"|"<<getJugador()<<"|"<<temp<<"|"<<roll<<"|"<<getTipodeCasilla()<<"|"<<getCasilla()<<"|"<<endl;
-    for(int i=0; i<nSnak;i++){
-        cout << serC[i] << " ";
-    }
-    cout << " " << endl;
-    for(int i=0; i<nEsc;i++){
-        cout << EscC[i] << " ";
-    }
     
     
 }
